@@ -1,1 +1,3 @@
 # FlappyBirdUrs
+
+ovdje pišemo readME 
