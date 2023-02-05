@@ -1,12 +1,12 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
 #include "UTFT/UTFT.h"
 #include "UTFT/color.h"
 #include "UTFT/DefaultFonts.h"
 #include "UTFT/ssd1289.h"
-#include <time.h>
-#include <stdio.h>
 
 
 
