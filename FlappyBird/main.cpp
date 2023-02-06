@@ -224,6 +224,8 @@ class Bird
 	void checkScore(){
 		for (int i = 0; i < pipeCount; i++){
 			if(pipes[i].dontUse == 0){
+				
+				// If statement that checks if pipe has been passed
 				if(pipes[i].y + 10 < this->y - 10){
 					pipes[i].passed = 1;
 				}

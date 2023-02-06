@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 00000238  00000000  00000000  00002db8  2**3
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000589a  00000000  00000000  00002ff0  2**0
+  6 .debug_info   000058a3  00000000  00000000  00002ff0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000cad  00000000  00000000  0000888a  2**0
+  7 .debug_abbrev 00000cdc  00000000  00000000  00008893  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001d04  00000000  00000000  00009537  2**0
+  8 .debug_line   00001d02  00000000  00000000  0000956f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000928  00000000  00000000  0000b23c  2**2
+  9 .debug_frame  00000928  00000000  00000000  0000b274  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000d85  00000000  00000000  0000bb64  2**0
+ 10 .debug_str    00000de0  00000000  00000000  0000bb9c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00003edd  00000000  00000000  0000c8e9  2**0
+ 11 .debug_loc    00003edd  00000000  00000000  0000c97c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000001d8  00000000  00000000  000107c6  2**0
+ 12 .debug_ranges 000001d8  00000000  00000000  00010859  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -897,9 +897,9 @@ LCD_Write_COM_DATA:
      ea4:	08 95       	ret
 
 00000ea6 <_Z41__static_initialization_and_destruction_0ii>:
-		bird.updateBird();
-		bird.checkScore();
 		_delay_ms(2);
+		
+		// The display's clear screen function is called at the end of each iteration to clear the screen for the next frame
 		display.clrScr();
 	}
      ea6:	0f 93       	push	r16
@@ -911,20 +911,20 @@ LCD_Write_COM_DATA:
      eb2:	6f 3f       	cpi	r22, 0xFF	; 255
      eb4:	7f 4f       	sbci	r23, 0xFF	; 255
      eb6:	21 f5       	brne	.+72     	; 0xf00 <_Z41__static_initialization_and_destruction_0ii+0x5a>
-
 /*
-* Global variables
+* UTFT is a library that allows user to display images and text on various TFT (Thin-Film Transistor) displays
+* UTFT display object will be used to draw components of the game on TFT LCD
 */
 
-UTFT display; //Display class
+UTFT display; 
      eb8:	8c e6       	ldi	r24, 0x6C	; 108
      eba:	92 e0       	ldi	r25, 0x02	; 2
      ebc:	0e 94 d9 0a 	call	0x15b2	; 0x15b2 <_ZN4UTFTC1Ev>
-		if(this->y < 0) this->dontUse = 1;
 
-	}
-};
 
+/**
+ * An array of 50 Pipe objects.
+ */
 Pipe pipes[50];
      ec0:	01 e3       	ldi	r16, 0x31	; 49
      ec2:	10 e0       	ldi	r17, 0x00	; 0
@@ -934,8 +934,8 @@ Pipe pipes[50];
      eca:	8f ef       	ldi	r24, 0xFF	; 255
      ecc:	18 07       	cpc	r17, r24
      ece:	c1 f0       	breq	.+48     	; 0xf00 <_Z41__static_initialization_and_destruction_0ii+0x5a>
-	int passed;
-
+	 * Initializes the y-coordinate, speed, upper height, passed flag, and dontUse flag of the pipe.
+	 */
 	Pipe()
 	{
 		
@@ -962,19 +962,19 @@ Pipe pipes[50];
 		dontUse = 0;
      ef4:	1f 82       	std	Y+7, r1	; 0x07
      ef6:	1e 82       	std	Y+6, r1	; 0x06
-		if(this->y < 0) this->dontUse = 1;
 
-	}
-};
 
+/**
+ * An array of 50 Pipe objects.
+ */
 Pipe pipes[50];
      ef8:	2a 96       	adiw	r28, 0x0a	; 10
      efa:	01 50       	subi	r16, 0x01	; 1
      efc:	11 09       	sbc	r17, r1
      efe:	e4 cf       	rjmp	.-56     	; 0xec8 <_Z41__static_initialization_and_destruction_0ii+0x22>
-		bird.updateBird();
-		bird.checkScore();
 		_delay_ms(2);
+		
+		// The display's clear screen function is called at the end of each iteration to clear the screen for the next frame
 		display.clrScr();
 	}
      f00:	df 91       	pop	r29
@@ -1001,14 +1001,14 @@ int main(void)
      f1a:	0f be       	out	0x3f, r0	; 63
      f1c:	cd bf       	out	0x3d, r28	; 61
 	
-	//SET PORTS
+	// Button ports
 	PORTB = 0xff;
      f1e:	8f ef       	ldi	r24, 0xFF	; 255
      f20:	88 bb       	out	0x18, r24	; 24
 	DDRB = 0x00;
      f22:	17 ba       	out	0x17, r1	; 23
 	
-	//LCD INIT
+	// LCD init
 	display.clrScr();
      f24:	8c e6       	ldi	r24, 0x6C	; 108
      f26:	92 e0       	ldi	r25, 0x02	; 2
@@ -1018,8 +1018,8 @@ int main(void)
      f2e:	8c e6       	ldi	r24, 0x6C	; 108
      f30:	92 e0       	ldi	r25, 0x02	; 2
      f32:	0e 94 11 0c 	call	0x1822	; 0x1822 <_ZN4UTFT7InitLCDEh>
-	int x;
-	int y;
+     * Initializes the x and y coordinates to starting position of the bird
+     */
 	Bird()
 	{
 		x = 150;
@@ -1032,11 +1032,11 @@ int main(void)
      f40:	af 2e       	mov	r10, r31
      f42:	b1 2c       	mov	r11, r1
      f44:	f0 2d       	mov	r31, r0
-	display.InitLCD(LANDSCAPE);
 
-	
+	// Instance of Bird class
 	Bird bird;
 	
+	// Loading random generated pipes into Pipe buffer
 	for(int i = 0; i < 50; i++) {
      f46:	e1 2c       	mov	r14, r1
      f48:	f1 2c       	mov	r15, r1
@@ -1044,8 +1044,8 @@ int main(void)
      f4c:	e2 16       	cp	r14, r18
      f4e:	f1 04       	cpc	r15, r1
      f50:	6c f5       	brge	.+90     	; 0xfac <main+0xa2>
-	int passed;
-
+	 * Initializes the y-coordinate, speed, upper height, passed flag, and dontUse flag of the pipe.
+	 */
 	Pipe()
 	{
 		
@@ -1072,10 +1072,10 @@ int main(void)
 		dontUse = 0;
      f76:	18 86       	std	Y+8, r1	; 0x08
      f78:	1f 82       	std	Y+7, r1	; 0x07
-
-	
+	// Instance of Bird class
 	Bird bird;
 	
+	// Loading random generated pipes into Pipe buffer
 	for(int i = 0; i < 50; i++) {
 		pipes[i] = Pipe();
      f7a:	d7 01       	movw	r26, r14
@@ -1099,21 +1099,21 @@ int main(void)
      f9e:	0d 92       	st	X+, r0
      fa0:	8a 95       	dec	r24
      fa2:	e1 f7       	brne	.-8      	; 0xf9c <main+0x92>
-	display.InitLCD(LANDSCAPE);
 
-	
+	// Instance of Bird class
 	Bird bird;
 	
+	// Loading random generated pipes into Pipe buffer
 	for(int i = 0; i < 50; i++) {
      fa4:	3f ef       	ldi	r19, 0xFF	; 255
      fa6:	e3 1a       	sub	r14, r19
      fa8:	f3 0a       	sbc	r15, r19
      faa:	cf cf       	rjmp	.-98     	; 0xf4a <main+0x40>
-
-	
+	// The while loop is the main game loop that updates and renders the game elements
 	while (1)
 	{
-		//if((PINB & (1 << PB0)) == 0)
+		
+		// The loop iterates through an array of pipes and draws and updates each pipe if it has not been marked as unused
 		for (int i = 0; i < pipeCount; i++){
      fac:	e1 2c       	mov	r14, r1
      fae:	f1 2c       	mov	r15, r1
@@ -1160,9 +1160,9 @@ int main(void)
     1000:	e8 58       	subi	r30, 0x88	; 136
     1002:	ff 4f       	sbci	r31, 0xFF	; 255
     1004:	6f 01       	movw	r12, r30
-	}
-
-	//create drawPipe function that will draw the pipe with pipes current x and y coordinates
+	 * Draws the pipe using the current x and y coordinates.
+	 * This function sets the color to green and uses the `fillRect` function of the `display` object to draw two rectangles, one for the upper and one for the lower pipe.
+	 */
 	void drawPipe()
 	{
 		display.setColor(GREEN);
@@ -1172,9 +1172,6 @@ int main(void)
     100c:	8c e6       	ldi	r24, 0x6C	; 108
     100e:	92 e0       	ldi	r25, 0x02	; 2
     1010:	0e 94 c9 0b 	call	0x1792	; 0x1792 <_ZN4UTFT8setColorEhhh>
-		//display.fillRect(200, 150, 0, 60); //prve dve koordinate za top left tocku
-		// druge dvije za bottom right tocku
-		//display.fillRect(200,150,0, 210);
 		display.fillRect(319, this->y, 320 - this->upperHeight, this->y + 10);
     1014:	f6 01       	movw	r30, r12
     1016:	40 81       	ld	r20, Z
@@ -1211,9 +1208,10 @@ int main(void)
     1054:	8c e6       	ldi	r24, 0x6C	; 108
     1056:	92 e0       	ldi	r25, 0x02	; 2
     1058:	0e 94 33 0b 	call	0x1666	; 0x1666 <_ZN4UTFT8fillRectEiiii>
-		//draw second pipe
-		//display.fillRect(x, height + 100, width, 240 - height);
-	}
+	/**
+	 * Updates the y-coordinate of the pipe by subtracting the speed from it.
+	 * If the y-coordinate becomes less than 0, the dontUse flag is set to 1.
+	 */
 	void update(){
 		this->y = this->y - this->speed;
     105c:	f6 01       	movw	r30, r12
@@ -1233,21 +1231,21 @@ int main(void)
     1076:	90 e0       	ldi	r25, 0x00	; 0
     1078:	97 83       	std	Z+7, r25	; 0x07
     107a:	86 83       	std	Z+6, r24	; 0x06
-
-	
+	// The while loop is the main game loop that updates and renders the game elements
 	while (1)
 	{
-		//if((PINB & (1 << PB0)) == 0)
+		
+		// The loop iterates through an array of pipes and draws and updates each pipe if it has not been marked as unused
 		for (int i = 0; i < pipeCount; i++){
     107c:	ff ef       	ldi	r31, 0xFF	; 255
     107e:	ef 1a       	sub	r14, r31
     1080:	ff 0a       	sbc	r15, r31
     1082:	96 cf       	rjmp	.-212    	; 0xfb0 <main+0xa6>
-			if(pipes[i].dontUse == 0){
-				pipes[i].drawPipe();
 				pipes[i].update();
 			}
 		}
+		
+		// The pixelCounter variable is used to keep track of how many pixels the pipes have moved and add new pipes when it reaches a certain value
 		pixelCounter++;
     1084:	20 91 76 00 	lds	r18, 0x0076	; 0x800076 <pixelCounter>
     1088:	30 91 77 00 	lds	r19, 0x0077	; 0x800077 <pixelCounter+0x1>
@@ -1255,6 +1253,7 @@ int main(void)
     108e:	3f 4f       	sbci	r19, 0xFF	; 255
     1090:	30 93 77 00 	sts	0x0077, r19	; 0x800077 <pixelCounter+0x1>
     1094:	20 93 76 00 	sts	0x0076, r18	; 0x800076 <pixelCounter>
+		
 		if(pixelCounter == 80){
     1098:	20 35       	cpi	r18, 0x50	; 80
     109a:	31 05       	cpc	r19, r1
@@ -1273,9 +1272,9 @@ int main(void)
 			pixelCounter = 0;
     10b8:	10 92 77 00 	sts	0x0077, r1	; 0x800077 <pixelCounter+0x1>
     10bc:	10 92 76 00 	sts	0x0076, r1	; 0x800076 <pixelCounter>
-		y = 60;
-	}
-	//create drawBird function that will draw the bird with birds current x and y coordinates
+     * Draws the bird using its x and y coordinates
+     * Uses the display object's setColor and fillCircle functions to draw a white circle at the bird's position.
+     */
 	void drawBird()
 	{
 		display.setColor(WHITE);
@@ -1293,8 +1292,9 @@ int main(void)
     10d6:	8c e6       	ldi	r24, 0x6C	; 108
     10d8:	92 e0       	ldi	r25, 0x02	; 2
     10da:	0e 94 5a 0c 	call	0x18b4	; 0x18b4 <_ZN4UTFT10fillCircleEiii>
-	}
-	//create updateBird function that will update the x coordinate of the bird when button is pressed else the bird will fall at a constant rate determined by gravity
+     * The function also implements collision detection, checking if the bird has collided with a pipe.
+     * If there is a collision, the game is ended and the score is displayed.
+     */
 	void updateBird()
 	{
 		if((PINB & (1 << PB0)) == 0)
@@ -1323,23 +1323,23 @@ int main(void)
     10f6:	8c 33       	cpi	r24, 0x3C	; 60
     10f8:	91 40       	sbci	r25, 0x01	; 1
     10fa:	ec f0       	brlt	.+58     	; 0x1136 <main+0x22c>
-				x=310;
+				x = 310;
     10fc:	0f 2e       	mov	r0, r31
     10fe:	f6 e3       	ldi	r31, 0x36	; 54
     1100:	8f 2e       	mov	r8, r31
     1102:	99 24       	eor	r9, r9
     1104:	93 94       	inc	r9
     1106:	f0 2d       	mov	r31, r0
-			
-			
+			}
+					
 		}
 
-		//add collision detection
+		//Collision detection
 		for (int i = 0; i < pipeCount; i++){
     1108:	80 e0       	ldi	r24, 0x00	; 0
     110a:	90 e0       	ldi	r25, 0x00	; 0
     110c:	19 c0       	rjmp	.+50     	; 0x1140 <main+0x236>
-				x=310;
+				x = 310;
 			}
 		}
 		else
@@ -1365,11 +1365,11 @@ int main(void)
     112a:	8f 2e       	mov	r8, r31
     112c:	91 2c       	mov	r9, r1
     112e:	f0 2d       	mov	r31, r0
-			
-			
+			}
+					
 		}
 
-		//add collision detection
+		//Collision detection
 		for (int i = 0; i < pipeCount; i++){
     1130:	80 e0       	ldi	r24, 0x00	; 0
     1132:	90 e0       	ldi	r25, 0x00	; 0
@@ -1475,6 +1475,8 @@ int main(void)
     11fa:	74 c0       	rjmp	.+232    	; 0x12e4 <main+0x3da>
     11fc:	20 e0       	ldi	r18, 0x00	; 0
     11fe:	30 e0       	ldi	r19, 0x00	; 0
+					
+					 // Update the score
 					for (int i = 0; i < pipeCount; i++){
     1200:	24 17       	cp	r18, r20
     1202:	35 07       	cpc	r19, r21
@@ -1504,19 +1506,19 @@ int main(void)
     1232:	01 96       	adiw	r24, 0x01	; 1
     1234:	90 93 75 00 	sts	0x0075, r25	; 0x800075 <__data_end+0x1>
     1238:	80 93 74 00 	sts	0x0074, r24	; 0x800074 <__data_end>
-
-		//add collision detection
 		for (int i = 0; i < pipeCount; i++){
 			if(pipes[i].dontUse == 0){
 				if((320 - pipes[i].upperHeight < x + 10 || 320 - pipes[i].upperHeight - 80 > x - 10) && pipes[i].y < y + 10 && pipes[i].y + 10 > y - 10){
+					
+					 // Update the score
 					for (int i = 0; i < pipeCount; i++){
     123c:	2f 5f       	subi	r18, 0xFF	; 255
     123e:	3f 4f       	sbci	r19, 0xFF	; 255
     1240:	df cf       	rjmp	.-66     	; 0x1200 <main+0x2f6>
-							score++;
 						}
 					}
-					//take integer score and make it string
+					
+					 // Display the score and "game over" message
 					char scoreString[10];
 					sprintf(scoreString, "%d", score);
     1242:	80 91 75 00 	lds	r24, 0x0075	; 0x800075 <__data_end+0x1>
@@ -1534,7 +1536,6 @@ int main(void)
     125e:	ff 92       	push	r15
     1260:	ef 92       	push	r14
     1262:	0e 94 2f 13 	call	0x265e	; 0x265e <sprintf>
-
 					display.clrScr();
     1266:	8c e6       	ldi	r24, 0x6C	; 108
     1268:	92 e0       	ldi	r25, 0x02	; 2
@@ -1581,7 +1582,6 @@ int main(void)
     12ba:	8c e6       	ldi	r24, 0x6C	; 108
     12bc:	92 e0       	ldi	r25, 0x02	; 2
     12be:	0e 94 03 10 	call	0x2006	; 0x2006 <_ZN4UTFT7setFontEPKh>
-					//rotate the display to landscape mode
 					display.print("GAME OVER", CENTER, CENTER);
     12c2:	2e e0       	ldi	r18, 0x0E	; 14
     12c4:	37 e2       	ldi	r19, 0x27	; 39
@@ -1599,18 +1599,18 @@ int main(void)
     12de:	0f 90       	pop	r0
     12e0:	0f 90       	pop	r0
     12e2:	ff cf       	rjmp	.-2      	; 0x12e2 <main+0x3d8>
-			
-			
+			}
+					
 		}
 
-		//add collision detection
+		//Collision detection
 		for (int i = 0; i < pipeCount; i++){
     12e4:	01 96       	adiw	r24, 0x01	; 1
     12e6:	2c cf       	rjmp	.-424    	; 0x1140 <main+0x236>
-
-		
-	}
-	//add function that will check if bird has passed the pipe and add to score
+	/**
+     * Checks if the bird has passed a pipe and updates the score if necessary.
+     * Goes through the array of pipes and marks the ones that have been passed by the bird.
+     */
 	void checkScore(){
 		for (int i = 0; i < pipeCount; i++){
     12e8:	80 e0       	ldi	r24, 0x00	; 0
@@ -1683,10 +1683,10 @@ int main(void)
     136c:	30 e0       	ldi	r19, 0x00	; 0
     136e:	31 87       	std	Z+9, r19	; 0x09
     1370:	20 87       	std	Z+8, r18	; 0x08
-
-		
-	}
-	//add function that will check if bird has passed the pipe and add to score
+	/**
+     * Checks if the bird has passed a pipe and updates the score if necessary.
+     * Goes through the array of pipes and marks the ones that have been passed by the bird.
+     */
 	void checkScore(){
 		for (int i = 0; i < pipeCount; i++){
     1372:	01 96       	adiw	r24, 0x01	; 1
@@ -1696,11 +1696,11 @@ int main(void)
     137a:	01 97       	sbiw	r24, 0x01	; 1
     137c:	f1 f7       	brne	.-4      	; 0x137a <main+0x470>
     137e:	00 00       	nop
-		}
-		bird.drawBird();
-		bird.updateBird();
-		bird.checkScore();
+		
+		//The delay function is called to slow down the loop to control the frame rate of the game
 		_delay_ms(2);
+		
+		// The display's clear screen function is called at the end of each iteration to clear the screen for the next frame
 		display.clrScr();
     1380:	8c e6       	ldi	r24, 0x6C	; 108
     1382:	92 e0       	ldi	r25, 0x02	; 2
@@ -1709,14 +1709,14 @@ int main(void)
 		pipes[i] = Pipe();
 	}
 
-	
+	// The while loop is the main game loop that updates and renders the game elements
 	while (1)
     1388:	11 ce       	rjmp	.-990    	; 0xfac <main+0xa2>
 
 0000138a <_GLOBAL__sub_I_display>:
-		bird.updateBird();
-		bird.checkScore();
 		_delay_ms(2);
+		
+		// The display's clear screen function is called at the end of each iteration to clear the screen for the next frame
 		display.clrScr();
 	}
     138a:	6f ef       	ldi	r22, 0xFF	; 255

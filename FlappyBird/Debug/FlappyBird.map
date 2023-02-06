@@ -1116,38 +1116,38 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x589a
+.debug_info     0x00000000     0x58a3
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x52e C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega16/avr5/crtatmega16.o
  .debug_info    0x0000052e       0xe5 DefaultFonts.o
  .debug_info    0x00000613       0x89 fastbitmap.o
  .debug_info    0x0000069c       0x87 fastfill.o
  .debug_info    0x00000723       0x85 fastio.o
- .debug_info    0x000007a8     0x1182 main.o
- .debug_info    0x0000192a      0x699 ssd1289.o
- .debug_info    0x00001fc3     0x38d7 UTFT.o
+ .debug_info    0x000007a8     0x118b main.o
+ .debug_info    0x00001933      0x699 ssd1289.o
+ .debug_info    0x00001fcc     0x38d7 UTFT.o
 
-.debug_abbrev   0x00000000      0xcad
+.debug_abbrev   0x00000000      0xcdc
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4e7 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega16/avr5/crtatmega16.o
  .debug_abbrev  0x000004e7       0x5d DefaultFonts.o
  .debug_abbrev  0x00000544       0x14 fastbitmap.o
  .debug_abbrev  0x00000558       0x14 fastfill.o
  .debug_abbrev  0x0000056c       0x14 fastio.o
- .debug_abbrev  0x00000580      0x2f5 main.o
- .debug_abbrev  0x00000875       0xf2 ssd1289.o
- .debug_abbrev  0x00000967      0x346 UTFT.o
+ .debug_abbrev  0x00000580      0x324 main.o
+ .debug_abbrev  0x000008a4       0xf2 ssd1289.o
+ .debug_abbrev  0x00000996      0x346 UTFT.o
 
-.debug_line     0x00000000     0x1d04
+.debug_line     0x00000000     0x1d02
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega16/avr5/crtatmega16.o
  .debug_line    0x00000116       0x93 DefaultFonts.o
  .debug_line    0x000001a9      0x1e9 fastbitmap.o
  .debug_line    0x00000392      0x16f fastfill.o
  .debug_line    0x00000501       0xef fastio.o
- .debug_line    0x000005f0      0x37e main.o
- .debug_line    0x0000096e      0x28a ssd1289.o
- .debug_line    0x00000bf8     0x110c UTFT.o
+ .debug_line    0x000005f0      0x37c main.o
+ .debug_line    0x0000096c      0x28a ssd1289.o
+ .debug_line    0x00000bf6     0x110c UTFT.o
 
 .debug_frame    0x00000000      0x928
  *(.debug_frame)
@@ -1155,16 +1155,16 @@ END GROUP
  .debug_frame   0x00000068       0x24 ssd1289.o
  .debug_frame   0x0000008c      0x89c UTFT.o
 
-.debug_str      0x00000000      0xd85
+.debug_str      0x00000000      0xde0
  *(.debug_str)
  .debug_str     0x00000000      0x1af C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega16/avr5/crtatmega16.o
  .debug_str     0x000001af      0x176 DefaultFonts.o
                                 0x1aa (size before relaxing)
- .debug_str     0x00000325      0x8c9 main.o
-                                0x9c4 (size before relaxing)
- .debug_str     0x00000bee       0x3d ssd1289.o
+ .debug_str     0x00000325      0x924 main.o
+                                0x9ce (size before relaxing)
+ .debug_str     0x00000c49       0x3d ssd1289.o
                                 0x1f3 (size before relaxing)
- .debug_str     0x00000c2b      0x15a UTFT.o
+ .debug_str     0x00000c86      0x15a UTFT.o
                                 0x976 (size before relaxing)
 
 .debug_loc      0x00000000     0x3edd
