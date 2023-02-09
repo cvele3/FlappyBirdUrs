@@ -1,5 +1,8 @@
 # FlappyBirdUrs
 
-možete napisat onak opis šta igra treba radit i koja je poanta igre
-napišite kontrole kak se upravlja i kak se ponovno pokreće (RESET gzumb za ponovno pokretanje)
-ona neka refference point bude ovaj link: https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/
+Cilj igre je micati Flappy Bird (u našem slućaju krug) naprijed, bez da se sudari s cijevima koje su joj na putu. Flappy automatski ide horizontalno, te igrač treba kontrolirati njenu 
+vertikalnu poziciju tako da ne dotakne cijevi čije su visine kreirano nasumično, te su različite jedne od drugih. Ako Flappy uspješno prođe između 50 cijevi, smatra se da je igra pobijeđena, u suprutnom je game over, te
+se na ekran ispisuje između koliko je cijevi Flappy prošao što se ujedno smatra i scorom igrača.
+
+KONTROLE: KEY1 - vertikalan skok Flappy-a
+		  RESET - resetiranje igre
