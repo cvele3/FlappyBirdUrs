@@ -1639,6 +1639,8 @@ int main(void)
     1318:	37 81       	ldd	r19, Z+7	; 0x07
     131a:	23 2b       	or	r18, r19
     131c:	51 f5       	brne	.+84     	; 0x1372 <main+0x468>
+				
+				// If statement that checks if pipe has been passed
 				if(pipes[i].y + 10 < this->y - 10){
     131e:	9c 01       	movw	r18, r24
     1320:	22 0f       	add	r18, r18
